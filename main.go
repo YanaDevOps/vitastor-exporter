@@ -34,6 +34,9 @@ func main() {
 		log.Info("Unable to load vitastor.conf, using command-line args")
 	} else {
 		log.Info("vitastor.conf loaded")
+		for i, addr := range config.VitastorEtcdUrls {
+		    config.VitastorEtcdUrls[i] = strings.Split(addr, "/")[0]
+		}
 	}
 	if *etcdUrlArg != "" {
 		log.Info("etcdUrlArg is set, overriding params in vitastor.conf")
